@@ -15,6 +15,16 @@ const App = () => {
     )  
   }, [])
 
+  //get local token
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if(loggedUserJSON) {
+      console.log('loggedUserJSON is ', loggedUserJSON)
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
+  }, [])
+
   return (
     <div>
       <h2>blogs</h2>

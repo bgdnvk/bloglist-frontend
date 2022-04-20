@@ -37,6 +37,11 @@ const LoginForm = (
             const user = await loginService.login({
                 username, password
             })
+
+            //saving token to LS
+            window.localStorage.setItem(
+                'loggedUser', JSON.stringify(user)
+            )
             setUser(user)
             setUsername('')
             setPassword('')
