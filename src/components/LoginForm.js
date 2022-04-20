@@ -1,4 +1,6 @@
 import React from "react"
+import loginService from '../services/login'
+import Logged from './Logged'
 
 const UsernameForm = ({username, setUsername}) => (
     <div>
@@ -22,13 +24,33 @@ const PasswordForm = ({password, setPassword}) => (
     </div>
 )
 
-const LoginForm = ({username, password, setUsername, setPassword}) => {
 
-    const handlelogin = (e) => {
+
+const LoginForm = (
+    {username, password, setUsername, setPassword, user, setUser}) => {
+
+    const handlelogin = async (e) => {
         e.preventDefault()
         console.log('loggin with ', username, password)
-    }
 
+        try{
+            const user = await loginService.login({
+                username, password
+            })
+            setUser(user)
+            setUsername('')
+            setPassword('')
+        } catch(e) {
+            //TODO: implement error
+            console.log('wrong ', e)
+        }
+    }
+    if(user){
+        console.log('user is ', user)
+        return(
+            <Logged user={user} setUser={setUser}></Logged>
+        )
+    }
     return(
         <form onSubmit={handlelogin}>
             <UsernameForm
