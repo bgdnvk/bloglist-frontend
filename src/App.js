@@ -31,6 +31,8 @@ const App = () => {
       console.log('loggedUserJSON is ', loggedUserJSON)
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
+      //adding the token
+      blogService.setToken(user.token)
     }
   }, [])
 
@@ -46,7 +48,9 @@ const App = () => {
       user={user}
       ></LoginForm>
 
-      {user && <BlogForm newBlog={newBlog} setNewBlog={setNewBlog}></BlogForm>}
+      {user 
+        && <BlogForm newBlog={newBlog} setNewBlog={setNewBlog}
+        blogs={blogs} setBlogs={setBlogs}></BlogForm>}
       
 
       {blogs.map(blog =>

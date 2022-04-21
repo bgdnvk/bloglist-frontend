@@ -1,4 +1,5 @@
 import React from "react"
+import blogService from '../services/blogs'
 
 const BlogInput = ({newBlog, setNewBlog, type}) => {
 
@@ -22,10 +23,16 @@ const BlogInput = ({newBlog, setNewBlog, type}) => {
     )
 }
 
-const BlogForm = ({newBlog, setNewBlog}) => {
-    const handleSubmit = (e) => {
+const BlogForm = ({newBlog, setNewBlog, blogs, setBlogs}) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(newBlog)
+        try{
+            const createdBlog = await blogService.create(newBlog)
+            setBlogs(blogs.concat(createdBlog))
+        } catch(e){
+            console.log(e)
+        }
     }
     return(
         <form onSubmit={handleSubmit}>
