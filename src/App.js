@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import LoginForm from './components/LoginForm'
+import BlogForm from './components/BlogForm'
 
 const App = () => {
+  //blogs data
   const [blogs, setBlogs] = useState([])
+  //user form/login
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
+  //blog form
+  const [newBlog, setNewBlog] = useState({
+    title: '',
+    author: '',
+    url: ''
+  })
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -36,6 +45,9 @@ const App = () => {
       setUser={setUser}
       user={user}
       ></LoginForm>
+
+      {user && <BlogForm newBlog={newBlog} setNewBlog={setNewBlog}></BlogForm>}
+      
 
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
