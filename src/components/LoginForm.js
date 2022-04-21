@@ -1,6 +1,7 @@
 import React from "react"
 import loginService from '../services/login'
 import Logged from './Logged'
+import blogService from '../services/blogs'
 
 const UsernameForm = ({username, setUsername}) => (
     <div>
@@ -42,7 +43,10 @@ const LoginForm = (
             window.localStorage.setItem(
                 'loggedUser', JSON.stringify(user)
             )
+            //set token and user
+            blogService.setToken(user.token)
             setUser(user)
+            //empty the fields
             setUsername('')
             setPassword('')
         } catch(e) {

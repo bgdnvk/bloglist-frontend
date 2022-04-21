@@ -14,11 +14,10 @@ const getAll = async () => {
   return request.data
 }
 
-//TODO: fix 500err
-//jwt must be provided
+//TODO: check token
 let token = null
 const setToken = newToken => {
-    token = `bearer${newToken}`
+    token = `bearer ${newToken}`
 }
 
 const create = async newObject => {
