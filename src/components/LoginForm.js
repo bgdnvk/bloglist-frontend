@@ -52,12 +52,11 @@ const LoginForm = (
             setUsername('')
             setPassword('')
         } catch(e) {
-            //TODO: refactor notification?
             console.log('wrong ', e)
-            setNotification('wrong username or password')
-            setTimeout(() => {
-                setNotification(null)
-            }, 5000)
+            setNotification({
+                "text":'wrong username or password',
+                "type":"errorNotification"
+            })
         }
     }
     if(user){

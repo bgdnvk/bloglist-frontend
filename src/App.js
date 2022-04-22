@@ -45,7 +45,9 @@ const App = () => {
     <div>
       <h2>blogs</h2>
 
-      <Notification message={notification}></Notification>
+      <Notification notification={notification}
+      setNotification={setNotification}
+      ></Notification>
 
       <LoginForm
       username={username}

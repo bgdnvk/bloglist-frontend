@@ -30,10 +30,10 @@ const BlogForm = ({newBlog, setNewBlog, blogs, setBlogs, setNotification}) => {
         try{
             const createdBlog = await blogService.create(newBlog)
             setBlogs(blogs.concat(createdBlog))
-            setNotification(`a new blog: ${createdBlog.title} by ${createdBlog.author}`)
-            setTimeout(() => {
-                setNotification(null)
-            }, 5000)
+            setNotification({
+                "text": `a new blog: ${createdBlog.title} by ${createdBlog.author}`,
+                "type": "successNotification"
+            })
         } catch(e){
             console.log(e)
         }
