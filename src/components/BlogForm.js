@@ -23,13 +23,17 @@ const BlogInput = ({newBlog, setNewBlog, type}) => {
     )
 }
 
-const BlogForm = ({newBlog, setNewBlog, blogs, setBlogs}) => {
+const BlogForm = ({newBlog, setNewBlog, blogs, setBlogs, setNotification}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(newBlog)
         try{
             const createdBlog = await blogService.create(newBlog)
             setBlogs(blogs.concat(createdBlog))
+            setNotification(`a new blog: ${createdBlog.title} by ${createdBlog.author}`)
+            setTimeout(() => {
+                setNotification(null)
+            }, 5000)
         } catch(e){
             console.log(e)
         }

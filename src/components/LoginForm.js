@@ -28,7 +28,9 @@ const PasswordForm = ({password, setPassword}) => (
 
 
 const LoginForm = (
-    {username, password, setUsername, setPassword, user, setUser}) => {
+    {username, password, setUsername, 
+    setPassword, user, setUser,
+    setNotification}) => {
 
     const handlelogin = async (e) => {
         e.preventDefault()
@@ -50,8 +52,12 @@ const LoginForm = (
             setUsername('')
             setPassword('')
         } catch(e) {
-            //TODO: implement error
+            //TODO: refactor notification?
             console.log('wrong ', e)
+            setNotification('wrong username or password')
+            setTimeout(() => {
+                setNotification(null)
+            }, 5000)
         }
     }
     if(user){

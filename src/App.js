@@ -3,6 +3,7 @@ import Blog from './components/Blog'
 import blogService from './services/blogs'
 import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
+import Notification from './components/Notification'
 
 const App = () => {
   //blogs data
@@ -17,6 +18,8 @@ const App = () => {
     author: '',
     url: ''
   })
+  //message for notifications
+  const [notification, setNotification] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -39,6 +42,9 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
+
+      <Notification message={notification}></Notification>
+
       <LoginForm
       username={username}
       setUsername={setUsername}
@@ -46,11 +52,13 @@ const App = () => {
       setPassword={setPassword}
       setUser={setUser}
       user={user}
+      setNotification={setNotification}
       ></LoginForm>
+      
 
       {user 
         && <BlogForm newBlog={newBlog} setNewBlog={setNewBlog}
-        blogs={blogs} setBlogs={setBlogs}></BlogForm>}
+        blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}></BlogForm>}
       
 
       {blogs.map(blog =>
