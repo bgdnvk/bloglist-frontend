@@ -62,7 +62,8 @@ const App = () => {
 
       {user 
         && <BlogForm newBlog={newBlog} setNewBlog={setNewBlog}
-        blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}></BlogForm>}
+        blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}
+        ></BlogForm>}
       
 
       {blogs.map(blog =>
