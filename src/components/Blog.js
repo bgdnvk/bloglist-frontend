@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
-
-
+import ExpandedBlog from './ExpandedBlog'
+import HiddenBlog from './HiddenBlog'
 
 const Blog = ({blog}) => {
   //some CSS
@@ -20,24 +20,18 @@ const Blog = ({blog}) => {
     e.preventDefault()
     setView(!view)
   }
-  //
+  //if the state is false hide the blog
   if(!view) {
     return(
-      <div style={blogStyle}>
-         {blog.title} 
-         {blog.author} 
-         <button onClick={handleView}>view</button>
-      </div> 
-    ) 
+      <HiddenBlog
+      blog={blog} blogStyle={blogStyle} handleView={handleView}
+      ></HiddenBlog>
+    )
   }
   return(
-    <div style={blogStyle}>
-      {blog.title} 
-      {blog.author} 
-      {blog.likes} 
-      {blog.url} 
-      <button onClick={handleView}>hide</button>
-    </div>
+    <ExpandedBlog
+    blog={blog} blogStyle={blogStyle} handleView={handleView}
+    ></ExpandedBlog>
   )
 }
 
