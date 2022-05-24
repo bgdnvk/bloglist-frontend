@@ -31,7 +31,7 @@ const NewBlogButton = ({setFormVisibility}) => {
     }
     return(
         <div>
-            <button onClick={handleClick}>create new note</button>
+            <button onClick={handleClick}>create</button>
         </div>
     )
 }
