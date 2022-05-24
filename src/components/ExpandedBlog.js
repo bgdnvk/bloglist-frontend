@@ -1,7 +1,13 @@
+import blogService from "../services/blogs";
+
 const ExpandedBlog = ({blog, blogStyle, handleView}) => {
 
     const handleLike = e => {
+        console.log('e is ', e)
         console.log('like btn pressed');
+
+        const newBlogObject = {...blog, 'likes': blog.likes+1}
+        console.log(newBlogObject)
     }
 
     return(
