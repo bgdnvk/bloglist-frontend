@@ -34,6 +34,8 @@ const update = async (id, newObject) => {
     }
     const response = 
             await axios.put(`${baseUrl}/${id}`, newObject, config)
+            
+    console.log(`data returned after update call: ${response.data}`)
     return response.data
 }
 
