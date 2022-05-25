@@ -10,7 +10,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
 
         const newBlogObject = {...blog, 'likes': likes+1}
         console.log(newBlogObject)
-        //TODO: make the app re-render?
+        //TODO: add user to the DB?
         try{
             await blogService.update(blog.id, newBlogObject)
             setLikes(likes+1)
