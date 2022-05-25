@@ -8,6 +8,8 @@ const ExpandedBlog = ({blog, blogStyle, handleView}) => {
 
         const newBlogObject = {...blog, 'likes': blog.likes+1}
         console.log(newBlogObject)
+        blogService.update(blog.id, newBlogObject)
+        //TODO: make the app re-render?
     }
 
     return(
