@@ -1,15 +1,23 @@
 import blogService from "../services/blogs";
 
-const ExpandedBlog = ({blog, blogStyle, handleView}) => {
+const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
 
-    const handleLike = e => {
+
+    const handleLike = async (e) => {
+        //debug like a pro
         console.log('e is ', e)
         console.log('like btn pressed');
 
-        const newBlogObject = {...blog, 'likes': blog.likes+1}
+        const newBlogObject = {...blog, 'likes': likes+1}
         console.log(newBlogObject)
-        blogService.update(blog.id, newBlogObject)
         //TODO: make the app re-render?
+        try{
+            await blogService.update(blog.id, newBlogObject)
+            setLikes(likes+1)
+            console.log('blog likes are ', newBlogObject.likes)
+        } catch(err){
+            console.log('error updating: ', e)
+        }
     }
 
     return(
@@ -18,7 +26,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView}) => {
             <br></br>
             {blog.author} 
             <br></br>
-            {blog.likes} 
+            likes {likes} 
             <button onClick={handleLike}>like</button>
             <br></br>
             {blog.url} 

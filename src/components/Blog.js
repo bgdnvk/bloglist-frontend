@@ -14,6 +14,8 @@ const Blog = ({blog}) => {
 
   //flag to show or hide details
   const [view, setView] = useState(false)
+  //likes
+  const [likes, setLikes] = useState(blog.likes)
 
   //function to view/hide a blog post
   const handleView = e => {
@@ -30,7 +32,9 @@ const Blog = ({blog}) => {
   }
   return(
     <ExpandedBlog
-    blog={blog} blogStyle={blogStyle} handleView={handleView}
+    blog={blog} blogStyle={blogStyle} 
+    handleView={handleView} 
+    likes={likes} setLikes={setLikes}
     ></ExpandedBlog>
   )
 }
