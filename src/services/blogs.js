@@ -10,8 +10,13 @@ const baseUrl = '/api/blogs'
 //async/await
 const getAll = async () => {
   const request = await axios.get(baseUrl)
-  console.log(request)
-  return request.data
+
+  //sort the data (u can do this on the rq.data tho)
+  const dataToSort = request.data
+  dataToSort.sort((a, b) => b.likes - a.likes)
+    //same memory so it doesn't matter, but better for readability?
+    //   return request.data
+    return dataToSort;
 }
 
 //TODO: check token

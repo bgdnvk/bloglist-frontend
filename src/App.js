@@ -23,6 +23,8 @@ const App = () => {
   //message for notifications
   const [notification, setNotification] = useState(null)
 
+
+
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
@@ -65,7 +67,7 @@ const App = () => {
         blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}
         ></BlogForm>}
       
-
+      
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
