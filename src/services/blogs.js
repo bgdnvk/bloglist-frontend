@@ -44,5 +44,11 @@ const update = async (id, newObject) => {
     return response.data
 }
 
+//delete req for 5.10
+const deleteById = async (id) => {
+    const req = await axios.delete(`${baseUrl}/${id}`)
+    return req.data
+}
+
 
 export default { getAll, create, update, setToken }
