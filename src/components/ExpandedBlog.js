@@ -20,6 +20,18 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
         }
     }
 
+    const handleDelete = async (e) => {
+        console.log('delete button pressed')
+        try{
+            if(window.confirm('do you want to delete?')){
+                console.log('id to delete is ', blog.id)
+                await blogService.deleteById(blog.id)
+            }
+        } catch (err) {
+            console.log('error deleting: ', err)
+        }
+    }
+
     return(
         <div style={blogStyle}>
             {blog.title} 
@@ -32,6 +44,8 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
             {blog.url} 
             <br></br>
             <button onClick={handleView}>hide</button>
+            <br></br>
+            <button onClick={handleDelete}>remove</button>
       </div>
     )
 }
