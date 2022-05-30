@@ -21,6 +21,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
     }
 
     const handleDelete = async (e) => {
+        //TODO: update blogs
         console.log('delete button pressed')
         try{
             if(window.confirm('do you want to delete?')){
