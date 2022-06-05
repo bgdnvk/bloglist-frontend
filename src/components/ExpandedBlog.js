@@ -70,7 +70,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes, setBlogs}) 
             console.log('error updating after clicking LIKE: ', e)
         }
     }
-    //TODO: Show the button for deleting a blog post only if the blog post was added by the user.
+    
     //delete a blog post and update the blog list
     const handleDelete = async (e) => {
         console.log('delete button pressed')
