@@ -2,7 +2,41 @@ import blogService from "../services/blogs";
 
 const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes, setBlogs}) => {
 
-    //5.8 is weird, check L11
+    //get user credentials stored in localstorage
+    const getUserJson = () => {
+        const loggedUserJSON = window.localStorage.getItem('loggedUser')
+        const user = JSON.parse(loggedUserJSON)
+        return user
+    }
+    //check if the blog has the same user as the logged user: L104
+    const checkBlogPertainsUser = () => {
+        const {username, name} = getUserJson()
+        const blogUserName = blog.user.username
+        const blogName = blog.user.name
+        if(username === blogUserName && name === blogName){
+            return true
+        } else{
+            return false
+        }
+    }
+
+    //----debug like a pro----
+    // console.log('blog is', blog)
+
+    // const {username, name} = getUserJson()
+    // console.log('user is ', getUserJson())
+    // console.log('username is ', username)
+    // console.log('name is ', name)
+
+    // const blogUserName = blog.user.username
+    // const blogName = blog.user.name
+    // console.log('blogUserName is ', blogUserName)
+    // console.log('blogName is ', blogName)
+
+    // console.log(checkBlogPertainsUser())
+    // ----
+
+    //5.8 is weird, check L45
     const handleLike = async (e) => {
         //debug like a pro
         console.log('like btn pressed');
@@ -13,8 +47,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes, setBlogs}) 
         //so if you like a blog post the user would change?
         //5.8 wut?
         //it works tho
-        const loggedUserJSON = window.localStorage.getItem('loggedUser')
-        const user = JSON.parse(loggedUserJSON)
+        const user = getUserJson()
         console.log('loggedUserJSON is ', user)
         console.log('user is: ', user)
         //new object to update in the db
@@ -32,7 +65,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes, setBlogs}) 
             console.log('blog likes are ', newBlogObject.likes)
             console.log('newBlogOnject after clicking like ', newBlogObject)
             //could implement a way to fetch blogs again so it updates automatically
-            //do what's on L49
+            //do what's on L82
         } catch(err){
             console.log('error updating after clicking LIKE: ', e)
         }
@@ -68,7 +101,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes, setBlogs}) 
             <br></br>
             <button onClick={handleView}>hide</button>
             <br></br>
-            <button onClick={handleDelete}>remove</button>
+            {checkBlogPertainsUser && <button onClick={handleDelete}>remove</button>}
       </div>
     )
 }
