@@ -1,6 +1,6 @@
 import blogService from "../services/blogs";
 
-const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
+const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes, setBlogs}) => {
 
     //5.8 is weird, check L11
     const handleLike = async (e) => {
@@ -31,19 +31,24 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
             setLikes(likes+1)
             console.log('blog likes are ', newBlogObject.likes)
             console.log('newBlogOnject after clicking like ', newBlogObject)
+            //could implement a way to fetch blogs again so it updates automatically
+            //do what's on L49
         } catch(err){
             console.log('error updating after clicking LIKE: ', e)
         }
     }
-
-    //TODO: update blogs
+    //TODO: Show the button for deleting a blog post only if the blog post was added by the user.
+    //delete a blog post and update the blog list
     const handleDelete = async (e) => {
         console.log('delete button pressed')
         try{
             if(window.confirm('do you want to delete?')){
                 console.log('id to delete is ', blog.id)
+                //delete the blog
                 await blogService.deleteById(blog.id)
-                //TODO: function to update/render blogs again
+                //fetch all the blogs again
+                const newBlogs = await blogService.getAll()
+                setBlogs(newBlogs)
             }
         } catch (err) {
             console.log('error deleting: ', err)

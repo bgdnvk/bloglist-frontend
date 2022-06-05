@@ -2,7 +2,7 @@ import {React, useState} from 'react'
 import ExpandedBlog from './ExpandedBlog'
 import HiddenBlog from './HiddenBlog'
 
-const Blog = ({blog}) => {
+const Blog = ({blog, blogs, setBlogs}) => {
   //some CSS
   const blogStyle = {
     paddingTop: 10,
@@ -34,7 +34,8 @@ const Blog = ({blog}) => {
     <ExpandedBlog
     blog={blog} blogStyle={blogStyle} 
     handleView={handleView} 
-    likes={likes} setLikes={setLikes}
+    likes={likes} setLikes={setLikes} 
+    setBlogs={setBlogs}
     ></ExpandedBlog>
   )
 }
