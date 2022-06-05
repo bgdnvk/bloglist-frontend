@@ -10,7 +10,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
 
         const newBlogObject = {...blog, 'likes': likes+1}
         console.log(newBlogObject)
-        //TODO: add user to the DB?
+        //TODO: add user information to the database
         try{
             await blogService.update(blog.id, newBlogObject)
             setLikes(likes+1)
@@ -27,6 +27,7 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
             if(window.confirm('do you want to delete?')){
                 console.log('id to delete is ', blog.id)
                 await blogService.deleteById(blog.id)
+                //TODO: function to update/render blogs again
             }
         } catch (err) {
             console.log('error deleting: ', err)
