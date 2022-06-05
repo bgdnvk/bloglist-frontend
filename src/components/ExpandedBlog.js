@@ -5,18 +5,30 @@ const ExpandedBlog = ({blog, blogStyle, handleView, likes, setLikes}) => {
 
     const handleLike = async (e) => {
         //debug like a pro
-        console.log('e is ', e)
         console.log('like btn pressed');
+        console.log('e from the like btn is ', e)
 
-        const newBlogObject = {...blog, 'likes': likes+1}
-        console.log(newBlogObject)
-        //TODO: add user information to the database
+        //add use info to the db, altho it's included in the schema
+        const loggedUserJSON = window.localStorage.getItem('loggedUser')
+        const user = JSON.parse(loggedUserJSON)
+        console.log('loggedUserJSON is ', user)
+        console.log('user is: ', user)
+        //new object to update in the db
+        const newBlogObject = {
+            ...blog,
+            'user': {
+                'username': user.username,
+                'name': user.name,
+            }, 
+            'likes': likes+1}
+
         try{
             await blogService.update(blog.id, newBlogObject)
             setLikes(likes+1)
             console.log('blog likes are ', newBlogObject.likes)
+            console.log('newBlogOnject after clicking like ', newBlogObject)
         } catch(err){
-            console.log('error updating: ', e)
+            console.log('error updating after clicking LIKE: ', e)
         }
     }
 
