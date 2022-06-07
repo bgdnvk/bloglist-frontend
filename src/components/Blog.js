@@ -1,8 +1,9 @@
 import {React, useState} from 'react'
+import {PropTypes} from 'prop-types'
 import ExpandedBlog from './ExpandedBlog'
 import HiddenBlog from './HiddenBlog'
 
-const Blog = ({blog, blogs, setBlogs}) => {
+const Blog = ({blog, setBlogs}) => {
   //some CSS
   const blogStyle = {
     paddingTop: 10,
@@ -38,6 +39,12 @@ const Blog = ({blog, blogs, setBlogs}) => {
     setBlogs={setBlogs}
     ></ExpandedBlog>
   )
+}
+
+//defining prop types
+Blog.propTypes = {
+  blog: PropTypes.object,
+  setBlogs: PropTypes.func,
 }
 
 export default Blog
