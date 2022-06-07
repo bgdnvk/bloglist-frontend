@@ -3,24 +3,25 @@
 //  : null
 
 //TODO: refactor?
-const Notification = ({notification, setNotification}) => {
-    const hideNotification = () => {
-        setTimeout(() => {
-            setNotification(null)
-        }, 5000)
-    }
-    const showNotification = () => 
-        <div className={notification.type}>{notification.text}</div>
+const Notification = ({ notification, setNotification }) => {
+  const hideNotification = () => {
+    setTimeout(() => {
+      setNotification(null)
+    }, 5000)
+  }
+  const showNotification = () => (
+    <div className={notification.type}>{notification.text}</div>
+  )
 
-    if(notification) {
-        return(
-            <div>
-                {showNotification()}
-                {hideNotification()}
-            </div>
-        )
-    } else {
-        return null
-    }
-} 
+  if (notification) {
+    return (
+      <div>
+        {showNotification()}
+        {hideNotification()}
+      </div>
+    )
+  } else {
+    return null
+  }
+}
 export default Notification

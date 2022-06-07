@@ -2,18 +2,17 @@ import { React, useState } from 'react'
 import blogService from '../services/blogs'
 
 const BlogInput = ({ newBlog, setNewBlog, type }) => {
-
   const handleForm = (e) => {
     const newBlogObject = { ...newBlog }
     newBlogObject[type] = e.target.value
     setNewBlog(newBlogObject)
   }
 
-  return(
+  return (
     <div>
       <p>{type} :</p>
       <input
-        type='text'
+        type="text"
         value={newBlog.type}
         name={`Blog${type}`}
         onChange={handleForm}
@@ -29,14 +28,20 @@ const NewBlogButton = ({ setFormVisibility }) => {
   const handleClick = () => {
     setFormVisibility(true)
   }
-  return(
+  return (
     <div>
       <button onClick={handleClick}>create</button>
     </div>
   )
 }
 
-const BlogForm = ({ newBlog, setNewBlog, blogs, setBlogs, setNotification }) => {
+const BlogForm = ({
+  newBlog,
+  setNewBlog,
+  blogs,
+  setBlogs,
+  setNotification,
+}) => {
   //state to hide the blog form with the cancel button and NewLogButton component
   const [formVisibility, setFormVisibility] = useState(false)
 
@@ -44,14 +49,14 @@ const BlogForm = ({ newBlog, setNewBlog, blogs, setBlogs, setNotification }) => 
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(newBlog)
-    try{
+    try {
       const createdBlog = await blogService.create(newBlog)
       setBlogs(blogs.concat(createdBlog))
       setNotification({
-        'text': `a new blog: ${createdBlog.title} by ${createdBlog.author}`,
-        'type': 'successNotification'
+        text: `a new blog: ${createdBlog.title} by ${createdBlog.author}`,
+        type: 'successNotification',
       })
-    } catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
@@ -62,11 +67,13 @@ const BlogForm = ({ newBlog, setNewBlog, blogs, setBlogs, setNotification }) => 
   }
   //check state and if it's false (which should be at the start of the render)
   //show only the button to create a new blog
-  if(!formVisibility) return <NewBlogButton setFormVisibility={setFormVisibility}></NewBlogButton>
+  if (!formVisibility)
+    return (
+      <NewBlogButton setFormVisibility={setFormVisibility}></NewBlogButton>
+    )
   //return the full blog form
-  return(
+  return (
     <form onSubmit={handleSubmit}>
-
       <BlogInput
         newBlog={newBlog}
         setNewBlog={setNewBlog}

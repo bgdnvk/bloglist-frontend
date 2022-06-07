@@ -18,23 +18,19 @@ const App = () => {
   const [newBlog, setNewBlog] = useState({
     title: '',
     author: '',
-    url: ''
+    url: '',
   })
   //message for notifications
   const [notification, setNotification] = useState(null)
 
-
-
   useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )  
+    blogService.getAll().then((blogs) => setBlogs(blogs))
   }, [])
 
   //get local token
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
-    if(loggedUserJSON) {
+    if (loggedUserJSON) {
       console.log('loggedUserJSON is ', loggedUserJSON)
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -47,30 +43,34 @@ const App = () => {
     <div>
       <h2>blogs</h2>
 
-      <Notification notification={notification}
-      setNotification={setNotification}
+      <Notification
+        notification={notification}
+        setNotification={setNotification}
       ></Notification>
 
       <LoginForm
-      username={username}
-      setUsername={setUsername}
-      password={password}
-      setPassword={setPassword}
-      setUser={setUser}
-      user={user}
-      setNotification={setNotification}
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+        setUser={setUser}
+        user={user}
+        setNotification={setNotification}
       ></LoginForm>
-      
 
-      {user 
-        && <BlogForm newBlog={newBlog} setNewBlog={setNewBlog}
-        blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}
-        ></BlogForm>}
-      
-      
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} setBlogs={setBlogs} />
+      {user && (
+        <BlogForm
+          newBlog={newBlog}
+          setNewBlog={setNewBlog}
+          blogs={blogs}
+          setBlogs={setBlogs}
+          setNotification={setNotification}
+        ></BlogForm>
       )}
+
+      {blogs.map((blog) => (
+        <Blog key={blog.id} blog={blog} setBlogs={setBlogs} />
+      ))}
     </div>
   )
 }
