@@ -1,9 +1,9 @@
-import {React, useState} from 'react'
-import {PropTypes} from 'prop-types'
+import { React, useState } from 'react'
+import { PropTypes } from 'prop-types'
 import ExpandedBlog from './ExpandedBlog'
 import HiddenBlog from './HiddenBlog'
 
-const Blog = ({blog, setBlogs}) => {
+const Blog = ({ blog, setBlogs }) => {
   //some CSS
   const blogStyle = {
     paddingTop: 10,
@@ -27,16 +27,16 @@ const Blog = ({blog, setBlogs}) => {
   if(!view) {
     return(
       <HiddenBlog
-      blog={blog} blogStyle={blogStyle} handleView={handleView}
+        blog={blog} blogStyle={blogStyle} handleView={handleView}
       ></HiddenBlog>
     )
   }
   return(
     <ExpandedBlog
-    blog={blog} blogStyle={blogStyle} 
-    handleView={handleView} 
-    likes={likes} setLikes={setLikes} 
-    setBlogs={setBlogs}
+      blog={blog} blogStyle={blogStyle}
+      handleView={handleView}
+      likes={likes} setLikes={setLikes}
+      setBlogs={setBlogs}
     ></ExpandedBlog>
   )
 }
