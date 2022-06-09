@@ -2,9 +2,9 @@ const HiddenBlog = ({ blog, blogStyle, handleView }) => {
 
   return(
     <div style={blogStyle} className='hiddenBlog'>
-      {blog.title}
+      <p>{blog.title}</p>
       <br></br>
-      {blog.author}
+      <p>{blog.author}</p>
       <br></br>
       <button onClick={handleView}>view</button>
     </div>

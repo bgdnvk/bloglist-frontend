@@ -10,6 +10,7 @@ test('renders content', () => {
   }
 
   render(<HiddenBlog blog={hiddenBlog}></HiddenBlog>)
+  //   screen.debug()
   const element = screen.getByText('test blog')
   expect(element).toBeDefined()
 })
