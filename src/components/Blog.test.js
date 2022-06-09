@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
 import Blog from './Blog'
 
-it.only('render blog', () => {
+test('render blog', () => {
   const blog = {
     title: 'test blog',
     author: 'test admin',
