@@ -97,7 +97,7 @@ const ExpandedBlog = ({
   }
 
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} className='expandedBlog'>
       {blog.title}
       <br></br>
       {blog.author}

@@ -1,7 +1,7 @@
 const HiddenBlog = ({ blog, blogStyle, handleView }) => {
 
   return(
-    <div style={blogStyle}>
+    <div style={blogStyle} className='hiddenBlog'>
       {blog.title}
       <br></br>
       {blog.author}
