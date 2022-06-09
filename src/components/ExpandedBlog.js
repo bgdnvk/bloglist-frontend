@@ -98,14 +98,14 @@ const ExpandedBlog = ({
 
   return (
     <div style={blogStyle} className='expandedBlog'>
-      {blog.title}
+      <p>{blog.title}</p>
       <br></br>
-      {blog.author}
+      <p>{blog.author}</p>
       <br></br>
-      likes {likes}
+      <p>likes {likes}</p>
       <button onClick={handleLike}>like</button>
       <br></br>
-      {blog.url}
+      <p>{blog.url}</p>
       <br></br>
       <button onClick={handleView}>hide</button>
       <br></br>
