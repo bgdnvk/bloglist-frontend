@@ -59,10 +59,11 @@ const ExpandedBlog = ({
     //new object to update in the db
     const newBlogObject = {
       ...blog,
-      user: {
-        username: user.username,
-        name: user.name,
-      },
+      //TODO: check front, disabled user for tests
+      // user: {
+      //   username: user.username,
+      //   name: user.name,
+      // },
       likes: likes + 1,
     }
 
