@@ -13,6 +13,7 @@ const BlogInput = ({ newBlog, setNewBlog, type }) => {
         value={newBlog.type}
         name={`Blog${type}`}
         onChange={handleForm}
+        placeholder={`write ${type} here`}
       ></input>
     </div>
   )

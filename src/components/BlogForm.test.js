@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import BlogForm from './BlogForm'
 import userEvent from '@testing-library/user-event'
@@ -33,13 +33,34 @@ test('<BlogForm/> update', async () => {
   //   expect(createBlog.mock.calls).toHaveLength(1)
   //   expect(createBlog.mock.calls[0][0].content).toBe('test title')
   const blogFormButton = screen.getByText('post blog')
-  //   const inputs = screen.getAllByRole('textbox')
-  //   await user.type(inputs[0], 'test title')
-  //   await user.type(inputs[1], 'test author')
-  //   await user.type(inputs[2], 'test.com')
-  screen.debug()
+  //inputs probs wrong?
+  const inputs = screen.getAllByRole('textbox')
+  await user.type(inputs[0], 'new title')
+  await user.type(inputs[1], 'new author')
+  await user.type(inputs[2], 'new test')
 
-  await user.click(blogFormButton)
-  expect(createBlog.mock.calls).toHaveLength(1)
+  // fireEvent.change(inputs[0], { target:
+  //    { value: 'fire' } })
+
+  // const inputTitle = screen.getByPlaceholderText('write title here')
+  // await user.type(inputTitle, 'text goes here')
+
+  // const input1 = screen.getByRole('textbox')
+  // await user.type(input1, 'test title goes here')
+  screen.debug(inputs[0])
+
+  // await user.click(blogFormButton)
+  // expect(createBlog.mock.calls).toHaveLength(1)
+  expect(inputs[0].value).toBe('new title')
+  expect(inputs[1].value).toBe('new author')
+  expect(inputs[2].value).toBe('new test')
+
+  // waitFor(() => {
+  //   // expect(inputs[0].value).toBe('fire')
+  //   expect(inputs[0].value).toBe('new title')
+
+  // })
+
+  // expect(createBlog.mock.calls[0][0].content).toBe('test title')
 
 })
