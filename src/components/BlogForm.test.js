@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import BlogForm from './BlogForm'
 import userEvent from '@testing-library/user-event'
@@ -49,17 +49,17 @@ test('<BlogForm/> update', async () => {
   // await user.type(input1, 'test title goes here')
   screen.debug(inputs[0])
 
-  // await user.click(blogFormButton)
-  // expect(createBlog.mock.calls).toHaveLength(1)
-  expect(inputs[0].value).toBe('new title')
-  expect(inputs[1].value).toBe('new author')
-  expect(inputs[2].value).toBe('new test')
+  await user.click(blogFormButton)
 
-  // waitFor(() => {
-  //   // expect(inputs[0].value).toBe('fire')
-  //   expect(inputs[0].value).toBe('new title')
 
-  // })
+  waitFor(() => {
+    expect(inputs[0].value).toBe('new title')
+    expect(inputs[1].value).toBe('new author')
+    expect(inputs[2].value).toBe('new test')
+
+    expect(createBlog.mock.calls).toHaveLength(1)
+
+  })
 
   // expect(createBlog.mock.calls[0][0].content).toBe('test title')
 

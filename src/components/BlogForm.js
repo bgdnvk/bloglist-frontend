@@ -35,7 +35,7 @@ const BlogForm = ({
   //submit button
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('value of form is ', e.target[0].value)
+    // console.log('value of form is ', e.target[0].value)
     console.log(newBlog)
     try {
       const createdBlog = await blogService.create(newBlog)
