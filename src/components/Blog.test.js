@@ -1,9 +1,8 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen, fireEvent, getByTestId, waitFor, cleanup } from '@testing-library/react'
+import { render, screen, cleanup } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Blog from './Blog'
-import HiddenBlog from './HiddenBlog'
 import ExpandedBlog from './ExpandedBlog'
 
 describe('<Blog/>', () => {
@@ -25,7 +24,7 @@ describe('<Blog/>', () => {
 
 
 
-  test('render blog', () => {
+  test('5.13: render blog', () => {
 
     //   render(<Blog blog={blog}></Blog>)
     //   screen.debug()
@@ -40,22 +39,7 @@ describe('<Blog/>', () => {
 
   })
 
-  test('clicking btn HiddenBlog', async () => {
-
-    const mockHandler = jest.fn()
-
-    render(
-      <HiddenBlog blog={blog} handleView={mockHandler}></HiddenBlog>
-    )
-
-    const user = userEvent.setup()
-    const button = screen.getByText('view')
-    await user.click(button)
-
-    expect(mockHandler.mock.calls).toHaveLength(1)
-  })
-
-  test('click btn and likes n url shown', async () => {
+  test('5.14: click button then likes and url are shown', async () => {
 
     // const container = render(<Blog blog={blog}></Blog>).container
 
@@ -69,10 +53,9 @@ describe('<Blog/>', () => {
 
   })
 
-  it.only('like btn clicked twice', async () => {
+  test('5.15: like button is clicked twice', async () => {
 
     const mockHandler = jest.fn()
-
     const user = userEvent.setup()
 
     const blog1 = {
@@ -82,15 +65,15 @@ describe('<Blog/>', () => {
       url: 'www.test.com',
     }
     // const { container } = render( <ExpandedBlog blog={blog1} likes={1} testLikeHandle={mockHandler}></ExpandedBlog>)
+    // const likeButton = getByTestId(container, 'likeButton')
     render( <ExpandedBlog blog={blog1} likes={1} testLikeHandle={mockHandler}></ExpandedBlog>)
 
     screen.debug()
 
-    // const likeButton = getByTestId(container, 'likeButton')
     const likeButton = screen.getByText('like')
-    // fireEvent.click(likeButton)
     await user.dblClick(likeButton)
     screen.debug()
+    expect(mockHandler).toHaveBeenCalledTimes(2)
 
     // await waitFor(() => {
     //   // expect(screen.getByText('likes 2')).toBeInTheDocument()
@@ -112,7 +95,6 @@ describe('<Blog/>', () => {
     // // fireEvent.click(button)
     // screen.debug()
     // expect(mockHandler.mock.calls).toHaveLength(1)
-    expect(mockHandler).toHaveBeenCalledTimes(2)
     // expect(button).toBeDefined()
     // expect(screen.queryByText('likes 1')).toBeInTheDocument()
     // expect(button).toHaveBeenCalled()
