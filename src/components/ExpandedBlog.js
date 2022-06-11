@@ -7,6 +7,7 @@ const ExpandedBlog = ({
   likes,
   setLikes,
   setBlogs,
+  testLikeHandle
 }) => {
   //get user credentials stored in localstorage
   const getUserJson = () => {
@@ -46,16 +47,17 @@ const ExpandedBlog = ({
   const handleLike = async (e) => {
     //debug like a pro
     console.log('like btn pressed')
-    console.log('e from the like btn is ', e)
+    // console.log('e from the like btn is ', e)
 
     //add use info to the db, altho it's included in the schema
     //this doesn't make sense as the blog already has a user?
     //so if you like a blog post the user would change?
     //5.8 wut?
     //it works tho
-    const user = getUserJson()
-    console.log('loggedUserJSON is ', user)
-    console.log('user is: ', user)
+    //user interfers with tests
+    // const user = getUserJson()
+    // console.log('loggedUserJSON is ', user)
+    // console.log('user is: ', user)
     //new object to update in the db
     const newBlogObject = {
       ...blog,
@@ -68,8 +70,11 @@ const ExpandedBlog = ({
     }
 
     try {
+      console.log('--------------------tested BEFORE service--------------')
+
       await blogService.update(blog.id, newBlogObject)
       setLikes(likes + 1)
+      console.log('--------------------tested after service--------------')
       console.log('blog likes are ', newBlogObject.likes)
       console.log('newBlogOnject after clicking like ', newBlogObject)
       //could implement a way to fetch blogs again so it updates automatically
@@ -104,7 +109,7 @@ const ExpandedBlog = ({
       <p>{blog.author}</p>
       <br></br>
       <p>likes {likes}</p>
-      <button onClick={handleLike}>like</button>
+      <button onClick={ testLikeHandle || handleLike } id='likeButton'>like</button>
       <br></br>
       <p>{blog.url}</p>
       <br></br>
