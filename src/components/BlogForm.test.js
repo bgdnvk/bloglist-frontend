@@ -10,7 +10,9 @@ test('<BlogForm/> update', async () => {
     author: 'test author',
     url: 'test.com'
   }
-  const createBlog = jest.fn()
+  //prevent default for
+  //https://stackoverflow.com/questions/62216232/error-not-implemented-htmlformelement-prototype-submit
+  const createBlog = jest.fn(e => e.preventDefault())
   const user = userEvent.setup()
 
   render(<BlogForm newBlog={newBlog} testHandleSubmit={createBlog}>
@@ -26,16 +28,18 @@ test('<BlogForm/> update', async () => {
   await user.click(createBlogButton)
   screen.debug()
 
-  expect(screen.queryByText('title :')).toBeInTheDocument()
+  //   expect(screen.queryByText('title :')).toBeInTheDocument()
+
   //   expect(createBlog.mock.calls).toHaveLength(1)
   //   expect(createBlog.mock.calls[0][0].content).toBe('test title')
-  const blogFormButton = screen.getByText('create blog')
-  const inputs = screen.getAllByRole('textbox')
-  await user.type(inputs[0], 'test title')
-  await user.type(inputs[1], 'test author')
-  await user.type(inputs[2], 'test.com')
+  const blogFormButton = screen.getByText('post blog')
+  //   const inputs = screen.getAllByRole('textbox')
+  //   await user.type(inputs[0], 'test title')
+  //   await user.type(inputs[1], 'test author')
+  //   await user.type(inputs[2], 'test.com')
   screen.debug()
 
-
+  await user.click(blogFormButton)
+  expect(createBlog.mock.calls).toHaveLength(1)
 
 })

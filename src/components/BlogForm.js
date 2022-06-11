@@ -91,7 +91,7 @@ const BlogForm = ({
         setNewBlog={setNewBlog}
         type={'url'}
       ></BlogInput>
-      <button type="submit">create blog</button>
+      <button type="submit">post blog</button>
       <button onClick={handleCancel}>cancel</button>
     </form>
   )
