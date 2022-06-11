@@ -55,26 +55,25 @@ const ExpandedBlog = ({
     //5.8 wut?
     //it works tho
     //user interfers with tests
-    // const user = getUserJson()
+    const user = getUserJson()
     // console.log('loggedUserJSON is ', user)
     // console.log('user is: ', user)
     //new object to update in the db
     const newBlogObject = {
       ...blog,
       //TODO: check front, disabled user for tests
-      // user: {
-      //   username: user.username,
-      //   name: user.name,
-      // },
+      user: {
+        username: user.username,
+        name: user.name,
+      },
       likes: likes + 1,
     }
 
     try {
-      console.log('--------------------tested BEFORE service--------------')
-
+      // console.log('--------------------tested BEFORE service--------------')
       await blogService.update(blog.id, newBlogObject)
       setLikes(likes + 1)
-      console.log('--------------------tested after service--------------')
+      // console.log('--------------------tested after service--------------')
       console.log('blog likes are ', newBlogObject.likes)
       console.log('newBlogOnject after clicking like ', newBlogObject)
       //could implement a way to fetch blogs again so it updates automatically
