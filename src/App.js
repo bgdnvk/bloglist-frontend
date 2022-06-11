@@ -15,11 +15,11 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   //blog form
-  const [newBlog, setNewBlog] = useState({
-    title: '',
-    author: '',
-    url: '',
-  })
+  // const [newBlog, setNewBlog] = useState({
+  //   title: '',
+  //   author: '',
+  //   url: '',
+  // })
   //message for notifications
   const [notification, setNotification] = useState(null)
 
@@ -60,8 +60,8 @@ const App = () => {
 
       {user && (
         <BlogForm
-          newBlog={newBlog}
-          setNewBlog={setNewBlog}
+          // newBlog={newBlog}
+          // setNewBlog={setNewBlog}
           blogs={blogs}
           setBlogs={setBlogs}
           setNotification={setNotification}

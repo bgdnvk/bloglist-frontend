@@ -36,13 +36,18 @@ const NewBlogButton = ({ setFormVisibility }) => {
 }
 
 const BlogForm = ({
-  newBlog,
-  setNewBlog,
   blogs,
   setBlogs,
   setNotification,
   testHandleSubmit
 }) => {
+
+  const [newBlog, setNewBlog] = useState({
+    title: '',
+    author: '',
+    url: '',
+  })
+
   //state to hide the blog form with the cancel button and NewLogButton component
   const [formVisibility, setFormVisibility] = useState(false)
 
