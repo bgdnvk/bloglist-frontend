@@ -30,7 +30,7 @@ const NewBlogButton = ({ setFormVisibility }) => {
   }
   return (
     <div>
-      <button onClick={handleClick}>create</button>
+      <button onClick={handleClick}>create blog</button>
     </div>
   )
 }
@@ -41,6 +41,7 @@ const BlogForm = ({
   blogs,
   setBlogs,
   setNotification,
+  testHandleSubmit
 }) => {
   //state to hide the blog form with the cancel button and NewLogButton component
   const [formVisibility, setFormVisibility] = useState(false)
@@ -73,7 +74,7 @@ const BlogForm = ({
     )
   //return the full blog form
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={testHandleSubmit || handleSubmit}>
       <BlogInput
         newBlog={newBlog}
         setNewBlog={setNewBlog}
