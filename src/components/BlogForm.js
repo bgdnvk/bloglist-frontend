@@ -1,25 +1,26 @@
 import { React, useState } from 'react'
 import blogService from '../services/blogs'
+import BlogInput from './BlogInput'
 
-const BlogInput = ({ newBlog, setNewBlog, type }) => {
-  const handleForm = (e) => {
-    const newBlogObject = { ...newBlog }
-    newBlogObject[type] = e.target.value
-    setNewBlog(newBlogObject)
-  }
+// const BlogInput = ({ newBlog, setNewBlog, type }) => {
+//   const handleForm = (e) => {
+//     const newBlogObject = { ...newBlog }
+//     newBlogObject[type] = e.target.value
+//     setNewBlog(newBlogObject)
+//   }
 
-  return (
-    <div>
-      <p>{type} :</p>
-      <input
-        type="text"
-        value={newBlog.type}
-        name={`Blog${type}`}
-        onChange={handleForm}
-      ></input>
-    </div>
-  )
-}
+//   return (
+//     <div>
+//       <p>{type} :</p>
+//       <input
+//         type="text"
+//         value={newBlog.type}
+//         name={`Blog${type}`}
+//         onChange={handleForm}
+//       ></input>
+//     </div>
+//   )
+// }
 
 //create new blog button
 //appears on the first render
