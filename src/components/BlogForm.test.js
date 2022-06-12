@@ -12,7 +12,9 @@ test('<BlogForm/> update', async () => {
   }
   //prevent default for
   //https://stackoverflow.com/questions/62216232/error-not-implemented-htmlformelement-prototype-submit
-  const createBlog = jest.fn(e => e.preventDefault())
+  const createBlog = jest.fn( e => {
+    e.preventDefault()
+  })
   const user = userEvent.setup()
 
   render(<BlogForm newBlog={newBlog} testHandleSubmit={createBlog}>
@@ -51,6 +53,9 @@ test('<BlogForm/> update', async () => {
 
   await user.click(blogFormButton)
 
+  //https://stackoverflow.com/questions/51418086/jest-expected-mock-function-to-have-been-called-but-it-was-not-called
+  console.log(createBlog.mock.calls[0][0].target)
+  // console.log(createBlog.mock.results)
 
   waitFor(() => {
     expect(inputs[0].value).toBe('new title')
@@ -58,7 +63,6 @@ test('<BlogForm/> update', async () => {
     expect(inputs[2].value).toBe('new test')
 
     expect(createBlog.mock.calls).toHaveLength(1)
-
   })
 
   // expect(createBlog.mock.calls[0][0].content).toBe('test title')
