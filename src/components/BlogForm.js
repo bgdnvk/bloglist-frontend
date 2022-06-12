@@ -37,6 +37,14 @@ const BlogForm = ({
     e.preventDefault()
     // console.log('value of form is ', e.target[0].value)
     console.log(newBlog)
+    //---TEST POST FORM---
+    if(testHandleSubmit){
+      testHandleSubmit({
+        testNewBlogPost: newBlog
+      })
+    }
+    //---TEST POST FORM--
+
     try {
       const createdBlog = await blogService.create(newBlog)
       setBlogs(blogs.concat(createdBlog))
@@ -61,7 +69,7 @@ const BlogForm = ({
     )
   //return the full blog form
   return (
-    <form onSubmit={testHandleSubmit || handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <BlogInput
         newBlog={newBlog}
         setNewBlog={setNewBlog}

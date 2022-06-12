@@ -12,9 +12,7 @@ test('<BlogForm/> update', async () => {
   }
   //prevent default for
   //https://stackoverflow.com/questions/62216232/error-not-implemented-htmlformelement-prototype-submit
-  const createBlog = jest.fn( e => {
-    e.preventDefault()
-  })
+  const createBlog = jest.fn()
   const user = userEvent.setup()
 
   render(<BlogForm newBlog={newBlog} testHandleSubmit={createBlog}>
@@ -34,13 +32,13 @@ test('<BlogForm/> update', async () => {
 
   //   expect(createBlog.mock.calls).toHaveLength(1)
   //   expect(createBlog.mock.calls[0][0].content).toBe('test title')
-  const blogFormButton = screen.getByText('post blog')
   //inputs probs wrong?
   const inputs = screen.getAllByRole('textbox')
   await user.type(inputs[0], 'new title')
   await user.type(inputs[1], 'new author')
   await user.type(inputs[2], 'new test')
 
+  const blogFormButton = screen.getByText('post blog')
   // fireEvent.change(inputs[0], { target:
   //    { value: 'fire' } })
 
@@ -54,8 +52,12 @@ test('<BlogForm/> update', async () => {
   await user.click(blogFormButton)
 
   //https://stackoverflow.com/questions/51418086/jest-expected-mock-function-to-have-been-called-but-it-was-not-called
-  console.log(createBlog.mock.calls[0][0].target)
+  // console.log(createBlog.mock.calls[0][0].target)
   // console.log(createBlog.mock.results)
+
+  console.log(createBlog.mock.calls[0][0].testNewBlogPost)
+  const blogPostForm = createBlog.mock.calls[0][0].testNewBlogPost
+
 
   waitFor(() => {
     expect(inputs[0].value).toBe('new title')
@@ -63,6 +65,10 @@ test('<BlogForm/> update', async () => {
     expect(inputs[2].value).toBe('new test')
 
     expect(createBlog.mock.calls).toHaveLength(1)
+
+    expect(blogPostForm.title).toBe('new title')
+    expect(blogPostForm.author).toBe('new author')
+    expect(blogPostForm.url).toBe('new test')
   })
 
   // expect(createBlog.mock.calls[0][0].content).toBe('test title')
